@@ -20,6 +20,9 @@
 		List tables = (List) request.getSession().getAttribute("tables");
 		String dbName = (String) request.getSession().getAttribute("dbName");
 		String table_name = (String) request.getSession().getAttribute("table_name");
+		if (table_name == null){
+			table_name = "Select table";
+		}
 	%>
 
 	<div class="Toolbar">
@@ -35,12 +38,13 @@
 				}
 			%>
 		</select>
-
-		<button onclick="create_table()" class="mid_button">Create new table</button>
-		<button onclick="delete_table()" class="mid_button">Delete table</button>
-		<button onclick="add_row()" class="mid_button">Add row</button>
-		<button onclick="add_column()" class="mid_button">Add column</button>
-		<button onclick="save_data()" class="mid_button" id="save_data">Save</button>
+		<div class="mid_button">
+		<button onclick="create_table()" >Create new table</button>
+		<button onclick="delete_table()" >Delete table</button>
+		<button onclick="add_row()" >Add row</button>
+		<button onclick="add_column()" >Add column</button>
+		<button onclick="save_data()" id="save_data">Save</button>
+		</div>
 		<a href="http://localhost:8080/JDBC_test"
 			style="float: right; margin-right: 5px"><button>Log out</button>
 		</a>
@@ -53,6 +57,9 @@
 
 
 	<%
+/* 	System.out.println(table_name);
+	System.out.println(table_name == "Select table"); */
+	 if(!table_name.equals("Select table")){ 
 		Connection conn = database_connection.getCon();
 		Statement myStmt = null;
 		try {
@@ -64,7 +71,6 @@
 
 		int nr_column = 1;
 		String columns_name = "";
-
 		try {
 
 			String column_name = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '"
@@ -83,7 +89,7 @@
 		value="<%=import_col_names.getString(1)%>" id="<%=column_name%>" />
 
 	<%
-		}
+		}	
 
 			columns_name = columns_name.substring(0, columns_name.length() - 1);
 
@@ -148,7 +154,9 @@
 
 	<%
 		;
-		}
+		} 
+		 }
+	
 	%>
 
 	<br>

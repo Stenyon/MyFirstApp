@@ -29,9 +29,9 @@ public class Check extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-
-		/* System.out.println(email); */
-
+		String table_name = request.getParameter("table_name");
+		/*System.out.println(table_name);*/
+		
 		Connection conn = database_connection.getCon();
 
 		try {
@@ -54,7 +54,7 @@ public class Check extends HttpServlet {
 						ResultSet last_name = myStmt
 								.executeQuery("SELECT last_name FROM employees WHERE email='" + email + "'");
 
-						while (last_name.next()) {
+						if (last_name.next()) {
 							String name = last_name.getString(1);
 
 							ResultSet user_id_brut = myStmt
@@ -100,6 +100,7 @@ public class Check extends HttpServlet {
 							request.getSession().setAttribute("dbName", dbName);
 							request.getSession().setAttribute("columns_name", columns_name);
 							request.getSession().setAttribute("tables", tables);
+
 							/*
 							 * try { get_tables.close(); user_id_brut.close(); last_name.close();
 							 * database_password.close(); rs.close();
@@ -121,16 +122,13 @@ public class Check extends HttpServlet {
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
 						dispatcher.forward(request, response);
 					}
-				}
+				}	
 
 			} else {
 				request.setAttribute("errorMessage", "Invalid email");
-				String table_name = request.getParameter("table_name");
-				if (table_name == null) {
-					table_name = "Select table";
-				}
+				
+
 				request.getSession().setAttribute("table_name", table_name);
-				/*System.out.println(table_name);*/
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
 				dispatcher.forward(request, response);
 			}

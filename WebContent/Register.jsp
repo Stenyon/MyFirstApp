@@ -77,8 +77,7 @@
 				%>
 				<script>
 $('#password, #confirm_password, #email').on('keyup', function () {
-	var email_list='<%=email%>
-					';
+	var email_list='<%=email%>';
 										/* 	console.log(($('#email').val()));	
 										 console.log(email_list.includes('123@ya')); */
 										var x = 0;

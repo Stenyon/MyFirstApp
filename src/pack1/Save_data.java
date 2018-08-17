@@ -40,11 +40,11 @@ public class Save_data extends HttpServlet {
 		y = y.substring(0, y.length() - 1) + ")";
 		z = z.substring(1);
 
-		/* System.out.println(y); */
+		/*System.out.println(y);	*/
 		for (int k = 1; k <= NumberOfRow; k++) {
 			for (int j = 0; j < NumberOfCol; j++) {
 
-				System.out.println(counter);
+				/*System.out.println(counter);*/
 				table_value[counter] = request.getParameter("cell_" + (j + 1) + "_" + k);
 
 				value_insert = value_insert + table_value[counter] + "','";
@@ -79,7 +79,7 @@ public class Save_data extends HttpServlet {
 			 */
 			String nu = "insert into " + table_name + " (" + z + ") values" + value_insert + ";";
 
-			System.out.println(nu);
+			/*System.out.println(nu);*/
 
 			myStmt.executeUpdate(sql);
 			myStmt.executeUpdate(da);

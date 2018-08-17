@@ -115,13 +115,19 @@ button:hover {
 	padding: 0px;
 	overflow: hidden;
 	background-color: #9198e5;
+	position : relative;
 }
 
 .mid_button {
-	float: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px; /* Need a specific value to work */
 	display: inline-block;
-	margin: 0;
-	text-align: center;
+	width: 505px;
+	height: 20px;
 }
 
 .drop {
