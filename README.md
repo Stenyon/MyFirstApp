@@ -1,6 +1,6 @@
 # MyFirstApp
 
-Create in MySQL next table :
+Create in MySQL in schema "test" next table :
 
 CREATE TABLE employees (
 `id` INT AUTO_INCREMENT,PRIMARY KEY (`id`),
