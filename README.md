@@ -1,6 +1,9 @@
 # MyFirstApp
 
-Create in MySQL in schema "test" next table :
+First, you have to create schema "test" and tabel "employees" in MySQL :
+
+CREATE SCHEMA IF NOT EXISTS test;
+  use test;
 
 CREATE TABLE employees (
 `id` INT AUTO_INCREMENT,PRIMARY KEY (`id`),
